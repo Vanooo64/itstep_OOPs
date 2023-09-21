@@ -180,31 +180,31 @@
 # obj.set_age(10) #зміна age
 # print(obj) #Jon 10
 
-#                       Декоратори геттера і сетора
-class Person:
-
-    def __init__(self, name, age=0):
-        self._name = name  # сигналізація що краще метод не чіпати,але це можна робити
-        self.__age = age  # захищенний атрибут, який неможна змінювати
-
-    def __str__(self):
-        return f"{self._name} {self.__age}"
-
-    @property  # декоратор для повернення гетера
-    def age(self):  # повертае захищенний атрибу
-        return self.__age
-
-    @age.setter
-    def age(self, age):  # сетер для зміни захищених атрибутів
-        try:
-            if age < 0: #перевірка до присвоення
-                raise ValueError('Age is not positive')
-            self.__age = age # gприсвоення
-        except ValueError:
-            print('Value is not changed')
-
-
-obj = Person("Jon", 20)
-print(obj)
-obj.age = -5
-print(obj)
+# #                       Декоратори геттера і сетора
+# class Person:
+#
+#     def __init__(self, name, age=0):
+#         self._name = name  # сигналізація що краще метод не чіпати,але це можна робити
+#         self.__age = age  # захищенний атрибут, який неможна змінювати
+#
+#     def __str__(self):
+#         return f"{self._name} {self.__age}"
+#
+#     @property  # декоратор для повернення гетера
+#     def age(self):  # повертае захищенний атрибу
+#         return self.__age
+#
+#     @age.setter
+#     def age(self, age):  # сетер для зміни захищених атрибутів
+#         try:
+#             if age < 0: #перевірка до присвоення
+#                 raise ValueError('Age is not positive')
+#             self.__age = age # gприсвоення
+#         except ValueError:
+#             print('Value is not changed')
+#
+#
+# obj = Person("Jon", 20)
+# print(obj)
+# obj.age = -5
+# print(obj)
