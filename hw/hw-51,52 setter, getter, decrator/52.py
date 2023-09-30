@@ -2,6 +2,7 @@ import requests
 import json
 import os
 
+
 class Money:
     def __init__(self, amount, currency):
         self.amount = amount
@@ -13,16 +14,17 @@ class Money:
 
 class BankAccount:
     accounts = []
-    __exchange_rate = {} #return {'AUD': 23.4844, 'CAD': 27.1623...}
-    data_folder = os.path.dirname(os.path.realpath(__file__))  #посилання на папку в якому знаходиться файл який виконуеться
-
+    __exchange_rate = {}  # return {'AUD': 23.4844, 'CAD': 27.1623...}
+    data_folder = os.path.dirname(
+        os.path.realpath(__file__))  # посилання на папку в якому знаходиться файл який виконуеться
 
     def __init__(self, account_number, balance, owner_name, currency):
         self.__account_number = account_number
         self.balance = Money(balance, currency)
         self.owner_name = owner_name
         BankAccount.accounts.append(self)  # додає  у список всі створені об'єкти
-        self.file_path = os.path.join(BankAccount.data_folder, f"{account_number}.txt") # Створення файла для збереження інформації про рахунок
+        self.file_path = os.path.join(BankAccount.data_folder,
+                                      f"{account_number}.txt")  # Створення файла для збереження інформації про рахунок
         self.save_to_file()
 
     def save_to_file(self):
@@ -61,7 +63,6 @@ class BankAccount:
             print(f"Файл для рахунку з номером {account_number} не існує.")
             return None
 
-
     @classmethod
     def delete_account(cls, account_number):
         """
@@ -92,8 +93,7 @@ class BankAccount:
             print(f"Рахунок з номером {account_number} не існує.")
             return False
 
-
-    @classmethod # підтягуе курси валют з API НБУ
+    @classmethod  # підтягуе курси валют з API НБУ
     def create_exchange_rate(cls):
         responce = requests.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
         json_text = responce.text
@@ -239,6 +239,7 @@ class BankAccount:
         str: Рядок з інформацією про рахунок.
         """
         return f"Клас - {BankAccount.__name__}, номер рахунку - {self.account_number}, баланс - {self.balance.amount}, ім'я власника - {self.owner_name}"
+
 
 BankAccount.create_exchange_rate()
 print(BankAccount._BankAccount__exchange_rate)
