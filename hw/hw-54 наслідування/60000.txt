@@ -1,0 +1,1 @@
+{"account_number": 60000, "balance": 15000, "owner_name": "John Doe", "currency": "USD"}
