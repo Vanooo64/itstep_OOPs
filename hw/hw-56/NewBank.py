@@ -61,10 +61,10 @@ class NewBankAccount(BankAccount):
 
 
 
-account6 = NewBankAccount(10000, 10000, "Ivan Savcenko", "UAH", 500, 10 )
-account7 = NewBankAccount(60000, 15000, 'John Doe', 'USD', 500, 10)
+# account6 = NewBankAccount(10000, 10000, "Ivan Savcenko", "UAH", 500, 10 )
+# account7 = NewBankAccount(60000, 15000, 'John Doe', 'USD', 500, 10)
+# # print(account6)
+# # account6.transfer(account7, 100)
 # print(account6)
-# account6.transfer(account7, 100)
-print(account6)
-account6.add_percent_balance(50)
-print(account6)
+# account6.add_percent_balance(50)
+# print(account6)

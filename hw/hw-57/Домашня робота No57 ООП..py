@@ -30,10 +30,11 @@ class Book:
             raise AttributeError("Доступ до неіснуючого атрибуту заборонено")
         return object.__getattribute__(self, item)
 
-#
+
 # # # test __getattribute__
 # # print("1_____________________")
-# # book = Book("Python Programming", "Ivan Svchenko")
+
+book = Book("Python Programming", "Ivan Svchenko")
 # # print("2_____________________")
 # # book.year = 2023
 # # print("3_____________________")
@@ -47,10 +48,10 @@ class Book:
 # # del book.year
 # # print(book.__dict__)
 #
-# # # test __setattr__
-# # book.year = 2016
-# # print(book.__dict__)
-# # print("book.year = ", book.year)
+# test __setattr__
+book.year = 2016
+print(book.__dict__)
+print("book.year = ", book.year)
 #
 # # # test __getattr__
 # # print(book.__dict__)
@@ -64,40 +65,41 @@ class Book:
 # # print(book.title, book.author)
 
 
-# Завдання 2.
-# Задайте клас Dynamic із приватним атрибутом __attributes, який при ініціалізації є порожнім словником.
+# # Завдання 2.
+# # Задайте клас Dynamic із приватним атрибутом __attributes, який при ініціалізації є порожнім словником.
+#
+#
+# class Dynamic:
+#     def __init__(self):
+#         self.__attributes = {}
+#
+#     def __setattr__(self, key, value):
+#         if key == "_Dynamic__attributes":
+#             super().__setattr__(key, value)
+#         else:
+#             self.__attributes[key] = value
+#
+#     def __getattr__(self, item):
+#         if item not in self._Dynamic__attributes:
+#             raise AttributeError(f'Атрибута {item} немає у викликаемому обекті')
+#         return self._Dynamic__attributes[item]
+#
+#     def __delattr__(self, item):
+#         if item not in self._Dynamic__attributes:
+#             raise AttributeError(f'Атрибута {item} немає у викликаемому обекті')
+#         else:
+#             del self._Dynamic__attributes[item]
+#
+#     def __getattribute__(self, item):
+#         if item == "year":
+#             raise AttributeError (f"Доступ до атрибута {item} заборонено")
+#         return super().__getattribute__(item)
 
 
-class Dynamic:
-    def __init__(self):
-        self.__attributes = {}
-
-    def __setattr__(self, key, value):
-        if key == "_Dynamic__attributes":
-            super().__setattr__(key, value)
-        else:
-            self.__attributes[key] = value
-
-    def __getattr__(self, item):
-        if item not in self._Dynamic__attributes:
-            raise AttributeError(f'Атрибута {item} немає у викликаемому обекті')
-        return self._Dynamic__attributes[item]
-
-    def __delattr__(self, item):
-        if item not in self._Dynamic__attributes:
-            raise AttributeError(f'Атрибута {item} немає у викликаемому обекті')
-        else:
-            del self._Dynamic__attributes[item]
-
-    def __getattribute__(self, item):
-        if item == "year":
-            raise AttributeError (f"Доступ до атрибута {item} заборонено")
-        return object.__getattribute__(self, item)
-
-
-a1 = Dynamic()
-a2 = Dynamic()
-
+# a1 = Dynamic()
+# a2 = Dynamic()
+#
+#
 # # test __getattribute__
 # a1.name = 'Ivan'
 # a1.year = 2023
