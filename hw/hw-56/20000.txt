@@ -1,0 +1,1 @@
+{"account_number": 20000, "balance": 100, "owner_name": "Madaminova Ludmila", "currency": "EUR"}
