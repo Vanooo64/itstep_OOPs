@@ -1,22 +1,22 @@
-# Даний клас Student, що описаний як
-#
-# class Student:
-#     team = "Python31"
-#     __slots__ = ['name', 'age', 'gender']
-#
-#     def __init__(self, name, age, gender):
-#         self.name = name
-#         self.age = age
-#         self.gender = gender
-#
-#     def greet(self):
-#         print("Hi, my name is", self.name)
-#
-#     def description(self):
-#         print(f"Person<{self.name}, {self.age}, {self.gender}>")
-#
-# побудуйте динамічно за допомогою метакласу type() з трьома аргументами.
-# Протестуйте роботу.
+Даний клас Student, що описаний як
+
+class Student:
+    team = "Python31"
+    __slots__ = ['name', 'age', 'gender']
+
+    def __init__(self, name, age, gender):
+        self.name = name
+        self.age = age
+        self.gender = gender
+
+    def greet(self):
+        print("Hi, my name is", self.name)
+
+    def description(self):
+        print(f"Person<{self.name}, {self.age}, {self.gender}>")
+
+побудуйте динамічно за допомогою метакласу type() з трьома аргументами.
+Протестуйте роботу.
 
 
 def custom_init(self, name, age, gender):
