@@ -7,87 +7,87 @@
 # # ієрархії категорій і товарів, а також метод для обчислення загальної ціни всіх товарів у магазині.
 # # Протестуйте роботу.
 #
-# from abc import ABC, abstractmethod
-#
-# class Component(ABC):
-#     @abstractmethod
-#     def get_total_price(self):
-#         pass
-#
-# class Product(Component):
-#     def __init__(self, name, price):
-#         self.name = name
-#         self.price = price
-#
-#     def get_total_price(self):
-#         return self.price
-#
-# class Category(Component):
-#     def __init__(self, name):
-#         self.name = name
-#         self.children = []
-#
-#     def add_child(self, child):
-#         self.children.append(child)
-#
-#     def remove_child(self, child):
-#         self.children.remove(child)
-#
-#     def get_total_price(self):
-#         total_price = sum(child.get_total_price() for child in self.children)
-#         return total_price
-#
-# class Store:
-#     def __init__(self):
-#         self.root_category = Category("Root")
-#
-#     def create_category_hierarchy(self, category, parent_category=None):
-#         if parent_category is None:
-#             parent_category = self.root_category
-#         parent_category.add_child(category)
-#
-#     def create_product(self, product, category):
-#         category.add_child(product)
-#
-#     def get_total_price(self):
-#         return self.root_category.get_total_price()
-#
-# # Приклад використання
-#
-# store = Store()
-#
-# # Створюємо категорії
-# electronics = Category("Electronics")
-# clothing = Category("Clothing")
-# appliances = Category("Appliances")
-#
-# # Створюємо підкатегорії
-# laptops = Category("Laptops")
-# smartphones = Category("Smartphones")
-#
-# # Додаємо підкатегорії до головних категорій
-# store.create_category_hierarchy(electronics)
-# store.create_category_hierarchy(clothing)
-# store.create_category_hierarchy(appliances)
-#
-# store.create_category_hierarchy(laptops, electronics)
-# store.create_category_hierarchy(smartphones, electronics)
-#
-# # Створюємо товари
-# product1 = Product("Macbook Air", 1000)
-# product2 = Product("Macbook Pro", 1200)
-# product3 = Product("Iphone 12", 500)
-# product4 = Product("Iphone 13", 600)
-#
-# # Додаємо товари до категорій
-# store.create_product(product1, laptops)
-# store.create_product(product2, laptops)
-# store.create_product(product3, smartphones)
-# store.create_product(product4, smartphones)
-#
-# # Отримуємо загальну ціну всіх товарів у магазині
-# total_price = store.get_total_price()
-# print(f"Total price of all products in the store: ${total_price}")
+from abc import ABC, abstractmethod
+
+class Component(ABC):
+    @abstractmethod
+    def get_total_price(self):
+        pass
+
+class Product(Component):
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def get_total_price(self):
+        return self.price
+
+class Category(Component):
+    def __init__(self, name):
+        self.name = name
+        self.children = []
+
+    def add_child(self, child):
+        self.children.append(child)
+
+    def remove_child(self, child):
+        self.children.remove(child)
+
+    def get_total_price(self):
+        total_price = sum(child.get_total_price() for child in self.children)
+        return total_price
+
+class Store:
+    def __init__(self):
+        self.root_category = Category("Root")
+
+    def create_category_hierarchy(self, category, parent_category=None):
+        if parent_category is None:
+            parent_category = self.root_category
+        parent_category.add_child(category)
+
+    def create_product(self, product, category):
+        category.add_child(product)
+
+    def get_total_price(self):
+        return self.root_category.get_total_price()
+
+# Приклад використання
+
+store = Store()
+
+# Створюємо категорії
+electronics = Category("Electronics")
+clothing = Category("Clothing")
+appliances = Category("Appliances")
+
+# Створюємо підкатегорії
+laptops = Category("Laptops")
+smartphones = Category("Smartphones")
+
+# Додаємо підкатегорії до головних категорій
+store.create_category_hierarchy(electronics)
+store.create_category_hierarchy(clothing)
+store.create_category_hierarchy(appliances)
+
+store.create_category_hierarchy(laptops, electronics)
+store.create_category_hierarchy(smartphones, electronics)
+
+# Створюємо товари
+product1 = Product("Macbook Air", 1000)
+product2 = Product("Macbook Pro", 1200)
+product3 = Product("Iphone 12", 500)
+product4 = Product("Iphone 13", 600)
+
+# Додаємо товари до категорій
+store.create_product(product1, laptops)
+store.create_product(product2, laptops)
+store.create_product(product3, smartphones)
+store.create_product(product4, smartphones)
+
+# Отримуємо загальну ціну всіх товарів у магазині
+total_price = store.get_total_price()
+print(f"Total price of all products in the store: ${total_price}")
 
 
 # # Завдання 2.
