@@ -29,9 +29,6 @@ class Tree:
             trace = trace + str(start.value) + "--"
         return trace
 
-    # def add_node(self, parent_value, new_node_value, type = "left"):
-    #     "Додання значення у листки"
-    #     parent_nada = self.find_parent_by_value(node=self.root, parent_value)
 
     def find_parent_by_value(self, node, value):
         if  node.value == value:
@@ -42,8 +39,6 @@ class Tree:
             node = self.find_parent_by_value(node.right, value)
         return node
 
-    def insert(self, value):
-        pass
 
     def inorder(self):
         "Left -> Root -> Right"
@@ -57,6 +52,24 @@ class Tree:
             trace = trace + str(start.value) + " -- "
             trace = self.inorder_recursive(start.right, trace)
         return trace
+
+    def find_node(self, node, value):
+        """
+        Пошук вузла за його значенням у піддереві із коренем node.
+        Якщо вузол знайдено, повертає його, інакше повертає None.
+        """
+        if node is None:
+            return None
+
+        if node.value == value:
+            return node
+
+        left_result = self.find_node(node.left, value)
+        if left_result:
+            return left_result
+
+        right_result = self.find_node(node.right, value)
+        return right_result
 
 root = Node("A")
 tree = Tree(root)
@@ -72,55 +85,20 @@ tree.root.right.right.right = Node("J")
 tree.root.left.left.left = Node("H")
 tree.root.left.left.right = Node("I")
 
-Протестувати обходи на прикладі наступного дерева:
-PreOrder = ABDHIECFGJ
-InOrder = HDIBEAFCJG
-PostOrder = HIDEBFJGCA
+# print("PreOrder:", tree.preorder(tree.root, ""))
+# print("InOrder:", tree.inorder())
+# print("PostOrder:", tree.postorder(tree.root, ""))
+#
+# # Приклади обходу дерева:
+# # PreOrder = ABDHIECFGJ
+# # InOrder = HDIBEAFCJG
+# # PostOrder = HIDEBFJGCA
 
+# Протестуємо пошук вузла зі значенням 'F' у піддереві з коренем 'A'
+found_node = tree.find_node(tree.root, 'F')
 
-# 5 3 2 4 7 6 8
-
-#              5
-#          /       \
-#       3             7
-#     /   \        /    \
-#   2      4     6       8
-
-
-
-
-
-#              1
-#          /       \
-#       2             3
-#     /   \             \
-#   4      5            6
-
-# root = Node(1)
-# root.left = Node(2)
-# root.right = Node(3)
-# root.left.left = Node(4)
-# root.left.right = Node(5)
-# root.right.right = Node(6)
-
-#              1
-#          /       \
-#       2             3
-#     /   \             \
-#   4      5             6
-
-root = Node(1)
-tree = Tree(root)
-
-print(tree.root)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
-tree.root.right.right = Node(6)
-
-# print(tree.preorder(tree.root, trace=""))
-# print(tree.postorder(tree.root, trace=""))
-
-print(tree.find_parent_by_value(node=tree.root, value=6))
+if found_node:
+    print(f"Знайдений вузол: {found_node}")
+else:
+    print("Вузол з таким значенням не знайдено.")
 
